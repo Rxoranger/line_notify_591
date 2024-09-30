@@ -18,7 +18,7 @@ jobs:
       - name: 設定 Python 環境
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'  # 指定 Python 版本
+          python-version: '3.9'  # 指定 Python 版本
 
       # 步驟 3: 安裝依賴（可選）
       - name: 安裝依賴
@@ -29,4 +29,4 @@ jobs:
       # 步驟 4: 執行 Python 腳本
       - name: 執行 Python 腳本
         run: |
-          python your_script.py  # 替換為你的腳本名稱
+          python house.py  # 替換為你的腳本名稱

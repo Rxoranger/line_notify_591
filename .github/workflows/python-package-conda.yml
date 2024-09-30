@@ -1,38 +1,32 @@
-name: Python Package using Conda
+name: 每六小時運行爬蟲程式
 
-on: 
-    schedule:
-      # 每 6 小時執行一次
-      - cron: "0 */6 * * *"  # 使用 Cron 表達式
-  
+on:
+  schedule:
+    - cron: "0 */6 * * *"  # 這個 cron 表示每六小時執行一次
+  workflow_dispatch:  # 允許手動從 GitHub UI 執行
 
 jobs:
-  build-linux:
+  run-scraper:
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 5
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v3
-      with:
-        python-version: '3.10'
-    - name: Add conda to system path
-      run: |
-        # $CONDA is an environment variable pointing to the root of the miniconda directory
-        echo $CONDA/bin >> $GITHUB_PATH
-    - name: Install dependencies
-      run: |
-        conda env update --file environment.yml --name base
-    - name: Lint with flake8
-      run: |
-        conda install flake8
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Test with pytest
-      run: |
-        conda install pytest
-        pytest
+      # 步驟 1: 檢出程式碼
+      - name: 檢出程式碼
+        uses: actions/checkout@v3
+
+      # 步驟 2: 設定 Python 環境
+      - name: 設定 Python 環境
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'  # 指定 Python 版本
+
+      # 步驟 3: 安裝依賴（可選）
+      - name: 安裝依賴
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt  # 如果你有 requirements.txt 文件
+
+      # 步驟 4: 執行 Python 腳本
+      - name: 執行 Python 腳本
+        run: |
+          python your_script.py  # 替換為你的腳本名稱

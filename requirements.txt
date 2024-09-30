@@ -1,4 +1,4 @@
+pandas
 requests
-BeautifulSoup
-re
+beautifulsoup4
 emoji

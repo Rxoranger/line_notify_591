@@ -2,7 +2,7 @@ name: 每六小時運行爬蟲程式
 
 on:
   schedule:
-    - cron: "0 */6 * * *"  # 這個 cron 表示每六小時執行一次
+    - cron: "0 12,18 * * *"  # 這個 cron 表示每六小時執行一次
   workflow_dispatch:  # 允許手動從 GitHub UI 執行
 
 jobs:

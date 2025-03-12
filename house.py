@@ -241,5 +241,5 @@ def sendPropertyUpdates(property_list, token):
                 print(f"訊息發送失敗，狀態碼: {status}")
 
 # 呼叫發送函數
-token = 'yNwd71SeRNKtJrlFbPkLNz28fgEp7imm0Tge2F5xwHp'  # LINE Notify 的 token
+token = 'czvXbHu1ArIariSWLUP0uIcGt8pXlYGNzSo2x2ntxRK'  # LINE Notify 的 token
 sendPropertyUpdates(property_list, token)
